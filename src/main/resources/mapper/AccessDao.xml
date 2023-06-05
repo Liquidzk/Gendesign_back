@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zongshe.dao.AccessDao">
+    <select id="queryAccess" resultType="com.zongshe.pojo.Access">
+        select * from jat_access
+        where areaId = #{areaId}
+    </select>
+    <select id="queryAccessCount" resultType="int">
+        select count(1) from jat_access
+        where areaId = #{areaId} and  date(createTime) =CURDATE();
+    </select>
+    <insert id="insertAccess" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.zongshe.pojo.Access">
+        INSERT INTO
+        jat_access(name,phone,areaId,createTime,healthy)
+        VALUES
+        (#{name},#{phone},#{areaId},#{createTime},#{healthy})
+    </insert>
+    <select id="queryAccessByDate" resultType="com.zongshe.pojo.Access">
+        select * from jat_access
+        where createTime between #{startTime} and #{endTime}
+    </select>
+    <select id="queryAccessByphone" resultType="com.zongshe.pojo.Access">
+        select * from jat_access
+        where phone = #{phone}
+    </select>
+</mapper>

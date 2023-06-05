@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zongshe.dao.AreaDao">
+    <select id="queryArea" resultType="com.zongshe.pojo.Area">
+       select * from jat_area;
+    </select>
+
+    <select id="queryAreaById" resultType="com.zongshe.pojo.Area" parameterType="int">
+       select * from jat_area where areaId = #{areaId};
+    </select>
+
+</mapper>

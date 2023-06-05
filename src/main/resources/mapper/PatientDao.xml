@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zongshe.dao.PatientDao">
+    <select id="queryPatientList" resultType="com.zongshe.pojo.Patient">
+        select id,Platitude,Plongitude,Paddress,Ptime,Pstatus from jat_patient;
+    </select>
+    <select id="queryPatientCountByPstatus" resultType="int">
+        select count(1) from jat_patient
+        where Pstatus = #{Pstatus};
+    </select>
+    <select id="queryPatientCount" resultType="int">
+        select count(1) from jat_patient
+        where Pstatus = #{Pstatus} and  date(Ptime) =CURDATE();
+    </select>
+</mapper>

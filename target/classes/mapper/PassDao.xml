@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zongshe.dao.PassDao">
+    <select id="queryPass" resultType="com.zongshe.pojo.Pass" parameterType="int">
+       select * from jat_pass where uid = #{uid};
+    </select>
+
+    <insert id="addPass" parameterType="com.zongshe.pojo.Pass" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO
+        jat_pass(uid,name,phone,idnum,vaccine,temperature,contact,status)
+        VALUES
+        (#{uid},#{name},#{phone},#{idnum},#{vaccine},#{temperature},#{contact},#{status})
+    </insert>
+</mapper>

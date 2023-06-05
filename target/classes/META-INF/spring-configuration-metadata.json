@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "spring.alicloud.sms",
+      "type": "com.zongshe.util.SendSMSUtil",
+      "sourceType": "com.zongshe.util.SendSMSUtil"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.alicloud.sms.appcode",
+      "type": "java.lang.String",
+      "sourceType": "com.zongshe.util.SendSMSUtil"
+    },
+    {
+      "name": "spring.alicloud.sms.host",
+      "type": "java.lang.String",
+      "sourceType": "com.zongshe.util.SendSMSUtil"
+    },
+    {
+      "name": "spring.alicloud.sms.path",
+      "type": "java.lang.String",
+      "sourceType": "com.zongshe.util.SendSMSUtil"
+    },
+    {
+      "name": "spring.alicloud.sms.template-id",
+      "type": "java.lang.String",
+      "sourceType": "com.zongshe.util.SendSMSUtil"
+    }
+  ],
+  "hints": []
+}

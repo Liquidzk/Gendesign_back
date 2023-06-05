@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zongshe.dao.UserDao">
+    <insert id="saveUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.zongshe.pojo.User">
+        INSERT INTO
+        jat_user(phone,passwd)
+        VALUES
+        (#{phone},#{passwd})
+    </insert>
+    <select id="queryUserInfo" resultType="com.zongshe.pojo.User" parameterType="String">
+       select * from jat_user where phone = #{phone};
+    </select>
+    <select id="login" parameterType="com.zongshe.pojo.User" resultType="int">
+        select id from jat_user where phone = #{phone} and passwd = #{passwd}
+    </select>
+    <update id="updateUser" parameterType="com.zongshe.pojo.User" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        update jat_user
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="idNum != null">idNum = #{idNum},</if>
+            <if test="accountNum != null">accountNum = #{accountNum},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="contact != null">contact = #{contact},</if>
+            <if test="temperature != null">temperature = #{temperature},</if>
+            <if test="qrvaccine != null">qrvaccine = #{qrvaccine}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="changepwd">
+        update jat_user
+        set passwd = #{passwd}
+        where phone = #{phone}
+    </update>
+    <select id="getQrVaccine" resultType="int">
+        select qrvaccine from jat_user where phone = #{phone}
+    </select>
+</mapper>
