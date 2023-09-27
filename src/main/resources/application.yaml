@@ -54,6 +54,7 @@ spring:
 mybatis:
   type-aliases-package: com.zty.pojo
   mapper-locations: classpath:mapper/*.xml
+
 server:
   port: 8082
   servlet:

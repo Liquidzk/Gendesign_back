@@ -3,6 +3,7 @@ package com.zongshe.service.impl;
 import com.zongshe.dao.UserDao;
 import com.zongshe.pojo.User;
 import com.zongshe.service.UserService;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

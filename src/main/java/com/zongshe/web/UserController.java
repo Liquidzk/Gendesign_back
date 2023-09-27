@@ -1,5 +1,6 @@
 package com.zongshe.web;
 
+import com.zongshe.mapper.UserMapper;
 import com.zongshe.pojo.User;
 import com.zongshe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -14,6 +16,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserMapper userMapper;
     @Autowired
     StringRedisTemplate redisTemplate;
 
@@ -84,6 +89,22 @@ public class UserController {
         System.out.println(phone);
         modelMap.put("qrVaccine",userService.getQrVaccine(phone));
         return modelMap;
+    }
+
+    @GetMapping("/userlist")
+    public List<User> userList() {
+        return userMapper.findall();
+    }
+
+    @GetMapping("/userpage")
+    public Map<String, Object> userPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize, @RequestParam Integer id) {
+        pageNum = (pageNum - 1) * pageSize;
+        List<User>data = userMapper.selectPage(pageNum, pageSize, id);
+        Integer total =  userMapper.selectTotal();
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", data);
+        res.put("total", total);
+        return res;
     }
 
 }
