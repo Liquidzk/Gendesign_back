@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    username: liquid
+    username: root
     password: zlk20030125
     #?serverTimezone=UTC解决时区的报错
     url: jdbc:mysql://localhost:3306/zongshe?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8
