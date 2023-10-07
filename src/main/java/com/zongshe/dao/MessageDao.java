@@ -6,7 +6,7 @@ import com.zongshe.pojo.Message;
 
 import java.util.List;
 
-@Mapper
+
 @Repository
 public interface MessageDao {
 

@@ -2,8 +2,7 @@ package com.zongshe.service;
 
 
 import com.zongshe.pojo.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+
 
 import java.util.List;
 
@@ -21,5 +20,6 @@ public interface UserService {
 
     Integer getQrVaccine(String phone);
 
+    boolean saveUser(User user);
 
 }

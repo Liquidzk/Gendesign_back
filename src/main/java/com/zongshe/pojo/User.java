@@ -1,5 +1,7 @@
 package com.zongshe.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +10,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName(value = "jat_user")
 public class User {
+
+    @TableId("id")
     private Integer id;
     private String phone;
     @JsonIgnore

@@ -1,5 +1,6 @@
 package com.zongshe.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zongshe.dao.UserDao;
 import com.zongshe.pojo.User;
 import com.zongshe.service.UserService;
@@ -8,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserService {
     @Autowired
-    private UserDao userDao
-            ;
+    private UserDao userDao;
     @Transactional
     @Override
     public boolean addUser(User user) {
@@ -86,5 +87,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
+    @Override
+    public boolean saveUser(User user) {
+//        if (user.getId() == null) {
+//            return save(user);
+//        } else {
+//            return updateById(user);
+//        }
+        return saveOrUpdate(user);
+    }
 }

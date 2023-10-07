@@ -1,6 +1,6 @@
 package com.zongshe.web;
 
-import com.zongshe.mapper.UserMapper;
+import com.zongshe.dao.UserDao;
 import com.zongshe.pojo.User;
 import com.zongshe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserDao userDao;
     @Autowired
     StringRedisTemplate redisTemplate;
 
@@ -93,18 +93,33 @@ public class UserController {
 
     @GetMapping("/userlist")
     public List<User> userList() {
-        return userMapper.findall();
+        return userDao.findall();
     }
 
     @GetMapping("/userpage")
-    public Map<String, Object> userPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize, @RequestParam Integer id) {
+    public Map<String, Object> userPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
         pageNum = (pageNum - 1) * pageSize;
-        List<User>data = userMapper.selectPage(pageNum, pageSize, id);
-        Integer total =  userMapper.selectTotal();
+        List<User>data = userDao.selectPage(pageNum, pageSize);
+        Integer total =  userDao.selectTotal();
         Map<String, Object> res = new HashMap<>();
         res.put("data", data);
         res.put("total", total);
         return res;
     }
 
+    @GetMapping("/userpageid")
+    public Map<String, Object> userPage_id(@RequestParam Integer pageNum, @RequestParam Integer pageSize, @RequestParam Integer id) {
+        pageNum = (pageNum - 1) * pageSize;
+        List<User>data = userDao.selectPage_id(pageNum, pageSize, id);
+        Integer total =  userDao.selectTotal_id(id);
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", data);
+        res.put("total", total);
+        return res;
+    }
+
+    @PostMapping("/save")
+    public boolean save(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
 }

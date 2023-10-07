@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
-@Mapper
+
 @Repository
 public interface AccessDao {
     int queryAccessCount(int areaId);
