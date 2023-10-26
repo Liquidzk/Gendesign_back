@@ -16,8 +16,8 @@ public class User {
     @TableId("id")
     private Integer id;
     private String phone;
-    @JsonIgnore
     private String passwd;
+    @JsonIgnore
     private String name;
     private String idNum;
     private Integer accountNum;
